@@ -32,4 +32,6 @@
             console.error('Error fetching categories:', error);
         }
     };
+
+    onMounted(fetchCategories)
 </script>

@@ -21,5 +21,8 @@
         }
     }
 
-    
+    onMounted(fetchProducts)
+
+
+
 </script>

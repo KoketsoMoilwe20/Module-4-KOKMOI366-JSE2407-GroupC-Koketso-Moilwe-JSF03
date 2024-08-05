@@ -3,13 +3,17 @@
         <div class="search-bar">
             <input 
                 type="text"
+                v-model="searchQuery"
+                @input="emitFilters"
                 placeholder="Search products..."
             />
         </div>
         <div class="category-filter">
-            <select>
-                <option>All Categories</option>
-                <option></option>
+            <select v-model="selectedCategory" @change="emitFilters">
+                <option value="">All Categories</option>
+                <option v-for="category in categories" :key="category" :value="category">
+                    {{ category }}
+                </option>
             </select>
         </div>
     </div>

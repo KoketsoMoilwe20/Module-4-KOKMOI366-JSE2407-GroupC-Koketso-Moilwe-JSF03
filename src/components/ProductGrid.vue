@@ -18,7 +18,7 @@
     import { useRouter } from 'vue-router';
     import Filter from './Filter.vue';
 
-    const products = ref([])
+    const products = ref([]);
     const searchQuery = ref('');
     const selectedCategory = ref('');
 

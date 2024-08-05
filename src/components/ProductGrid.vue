@@ -1,4 +1,5 @@
 <template>
+    <Filter />
     <div class="product-grid">
         <div class="grid">
             <div v-for="product in products" :key="product.id" class="product-card" @click="viewProduct(product.id)">
@@ -15,6 +16,7 @@
 <script setup>
     import {ref, onMounted} from 'vue';
     import { useRouter } from 'vue-router';
+    import Filter from './Filter.vue';
 
     const products = ref([])
 

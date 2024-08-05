@@ -1,5 +1,7 @@
 <template>
-    <div class="filter-component">
+
+    <div class="filter-sort-container">
+        <div class="filter-component">
         <div class="search-bar">
             <input 
                 type="text"
@@ -16,11 +18,15 @@
                 </option>
             </select>
         </div>
+        </div>
+        <Sort />
     </div>
+    
 </template>
 
 <script setup>
     import {ref, onMounted} from 'vue';
+    import Sort from './Sort.vue';
 
     const searchQuery = ref('');
     const categories = ref([]);

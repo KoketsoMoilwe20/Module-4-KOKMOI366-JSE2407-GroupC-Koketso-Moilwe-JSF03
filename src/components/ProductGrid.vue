@@ -2,7 +2,9 @@
     <div class="product-grid">
         <div class="grid">
             <div v-for="product in products" :key="product.id" class="product-card">
-                
+                <img :src="product.image" class="product-image">
+                <h3>{{ product.title }}</h3>
+                <p>{{ product.price }} USD</p>
             </div>
         </div>
     </div>

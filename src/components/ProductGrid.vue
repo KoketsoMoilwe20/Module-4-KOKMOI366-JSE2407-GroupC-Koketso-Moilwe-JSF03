@@ -1,7 +1,7 @@
 <template>
     <div class="product-grid">
         <div class="grid">
-            <div v-for="product in products" :key="product.id" class="product-card">
+            <div v-for="product in products" :key="product.id" class="product-card" @click="viewProduct(product.id)">
                 <img :src="product.image" class="product-image">
                 <h3>{{ product.title }}</h3>
                 <h4>{{ product.category }}</h4>
@@ -25,6 +25,11 @@
         } catch (error) {
             console.error('Error fetching products:', error)
         }
+    }
+
+    const router = useRouter();
+    const viewProduct = (id) => {
+        router.push({name: 'ProductDetails', params: {id}})
     }
 
     onMounted(fetchProducts)

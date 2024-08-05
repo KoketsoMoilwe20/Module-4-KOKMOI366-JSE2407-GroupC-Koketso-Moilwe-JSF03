@@ -15,6 +15,10 @@
     </div>
 </template>
 
-<script>
+<script setup>
+    import {ref, onMounted} from 'vue';
 
+    const searchQuery = ref('');
+    const categories = ref([]);
+    const selectedCategory = ref('');
 </script>

@@ -8,7 +8,7 @@
     </div>
 </template>
 
-<script>
+<script setup>
     import { ref, onMounted } from 'vue';
     import { useRoute } from 'vue-router';
 
@@ -16,7 +16,7 @@
     const route = useRoute()
 
     const fetchProduct = async () => {
-        const id = route.params.id
+        const id = route.params.id;
         try {
             const response = await fetch(`https://fakestoreapi.com/products/${id}`)
             product.value = await response.json()
@@ -27,3 +27,4 @@
 
     onMounted(fetchProduct)
 </script>
+

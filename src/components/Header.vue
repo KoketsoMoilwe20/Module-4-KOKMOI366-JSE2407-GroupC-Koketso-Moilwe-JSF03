@@ -8,7 +8,7 @@
           </router-link>
           
           <button @click="toggleNavbar" class="mobile-menu-button" aria-controls="navbar-dropdown" :aria-expanded="isNavbarOpen">
-            <span class="sr-only">Open main menu</span>
+            <span class="sr-only"></span>
             <svg class="menu-icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
               <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15" />
             </svg>

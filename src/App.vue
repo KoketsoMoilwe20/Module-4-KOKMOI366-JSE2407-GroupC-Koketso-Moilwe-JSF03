@@ -1,17 +1,26 @@
 <template>
-  <div>{{ message }}</div>
+  <div id="app">
+    <Header />
+    <div>{{ message }}</div>
+  </div>
+  
 </template>
 
 <script>
   import Header from './components/Header.vue';
 
   export default {
+    name: 'App',
+    components: {
+      Header,
+    },
     data() {
       return {
-        message: "Hello, Vue 3!",
+        message: "Hello, vue 3!",
       };
     },
   };
+    
 
 
   // createApp(App).mount("#app");

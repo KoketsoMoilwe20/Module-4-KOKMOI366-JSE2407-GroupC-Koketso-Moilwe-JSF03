@@ -9,5 +9,8 @@
 </template>
 
 <script>
+    import { ref, onMounted } from 'vue';
+    import { useRoute } from 'vue-router';
+
     
 </script>

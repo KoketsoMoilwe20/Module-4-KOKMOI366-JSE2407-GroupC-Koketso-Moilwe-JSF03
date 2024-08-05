@@ -14,7 +14,4 @@
     console.log("app component mounted")
   })
     
-
-
-
 </script>

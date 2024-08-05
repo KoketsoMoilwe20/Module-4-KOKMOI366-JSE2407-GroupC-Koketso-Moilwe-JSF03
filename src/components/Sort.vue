@@ -7,3 +7,14 @@
         </select>
     </div>
 </template>
+
+<script setup>
+    import { ref } from 'vue';
+
+    const sortOption = ref('');
+    const emit = defineEmits(['sort-change']);
+
+    const emitSort = () => {
+        emit('sort-change', sortOption.value)
+    };
+</script>

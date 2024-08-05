@@ -8,6 +8,7 @@
         <p class="price">${{ product.price }}</p>
         <p class="description">{{ product.description }}</p>
         <p class="category">Category: {{ product.category }}</p>
+        <button>Back To Products</button>
     </div>
     <div v-else class="prodcuct-details">
         Product not found

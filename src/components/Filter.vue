@@ -21,4 +21,6 @@
     const searchQuery = ref('');
     const categories = ref([]);
     const selectedCategory = ref('');
+
+    const emit = defineEmits(['filter-change']);
 </script>

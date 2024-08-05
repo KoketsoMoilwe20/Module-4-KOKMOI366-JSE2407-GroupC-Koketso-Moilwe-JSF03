@@ -12,7 +12,7 @@
     import { ref, onMounted } from 'vue';
     import { useRoute } from 'vue-router';
 
-    const product = ref(null)
+    const product = ref([]) //to be changed after adding loading state
     const route = useRoute()
 
     const fetchProduct = async () => {

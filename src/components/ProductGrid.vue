@@ -1,5 +1,5 @@
 <template>
-    <Filter />
+    <Filter @filter-change="handleFilterChange"/>
     <div class="product-grid">
         <div class="grid">
             <div v-for="product in products" :key="product.id" class="product-card" @click="viewProduct(product.id)">
@@ -33,6 +33,11 @@
     const viewProduct = (id) => {
         router.push({name: 'ProductDetails', params: {id}})
     }
+
+    const handleFilterChange = (filters) => {
+      searchQuery.value = filters.searchQuery;
+      selectedCategory.value = filters.category;
+    };
 
     onMounted(fetchProducts)
 

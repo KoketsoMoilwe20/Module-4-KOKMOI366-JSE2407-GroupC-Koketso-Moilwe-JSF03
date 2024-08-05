@@ -8,7 +8,7 @@
         <p class="price">${{ product.price }}</p>
         <p class="description">{{ product.description }}</p>
         <p class="category">Category: {{ product.category }}</p>
-        <button>Back To Products</button>
+        <button @click="goBack">Back To Products</button>
     </div>
     <div v-else class="prodcuct-details">
         Product not found
@@ -17,7 +17,7 @@
 
 <script setup>
     import { ref, onMounted } from 'vue';
-    import { useRoute } from 'vue-router';
+    import { useRoute, useRouter } from 'vue-router';
 
     const product = ref(null) 
     const loading = ref(true)
@@ -33,6 +33,11 @@
             console.error('Error fetching product:', error)
             loading.value = false
         }
+    }
+
+    const router = useRouter();
+    const goBack = () => {
+        router.push({name: 'Home'});
     }
 
     onMounted(fetchProduct)

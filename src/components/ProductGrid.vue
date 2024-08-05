@@ -14,7 +14,7 @@
 </template>
 
 <script setup>
-    import {ref, onMounted} from 'vue';
+    import {ref, onMounted, computed} from 'vue';
     import { useRouter } from 'vue-router';
     import Filter from './Filter.vue';
 
@@ -38,6 +38,15 @@
       searchQuery.value = filters.searchQuery;
       selectedCategory.value = filters.category;
     };
+
+    const filterProducts = computed(() => {
+      return products.value.filter(product => {
+        const matchesSearch = product.title.toLowerCase().includes(searchQuery.value.toLowerCase());
+        const matchesCategory = selectedCategory.value === '' || product.category === selectedCategory.value;
+
+        return matchesSearch && matchesCategory;
+      })
+    })
 
     onMounted(fetchProducts)
 

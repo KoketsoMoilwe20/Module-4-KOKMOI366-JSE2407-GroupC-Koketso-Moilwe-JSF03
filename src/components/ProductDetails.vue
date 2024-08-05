@@ -28,3 +28,30 @@
     onMounted(fetchProduct)
 </script>
 
+<style scoped>
+    .product-details {
+        padding: 20px;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .product-image {
+        max-width: 100%;
+        height: 400px;
+        object-fit: contain;
+    }
+
+    .price {
+        font-weight: bold;
+        font-size: 1.2em;
+    }
+
+    .description {
+        margin-top: 20px;
+    }
+
+    .category {
+        font-style: italic;
+        color: #666;
+    }
+</style>

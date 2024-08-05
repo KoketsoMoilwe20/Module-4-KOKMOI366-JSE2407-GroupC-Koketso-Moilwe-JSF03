@@ -1,63 +1,186 @@
 <template>
-    <header>
-        <nav>
-
-            <div>
-                <a href="/" class="logo">
-                    <img src="/online-shop.png">
-                    <span>SwiftCart</span>
-                </a>
-
-                <button>
-                    <span>Open main menu</span>
-                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
-                    </svg>
-                </button>
-
-                <div>
-                    <ul>
-                        <li>
-                            <a href="#" class="nav-link">Wishlist</a>
-                        </li>
-                        <li class="nav-item relative">
-                            <div class="notification">
-                                 <span class="badge">2</span>
-                            </div>
-                            <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"/>
-                            </svg>
-                     </li>
-                    <li class="nav-link mobile-only">
-                        Cart
-                    </li>
-                    <li>
-                        <a href="login" class="nav-link">Login</a>
-                    </li>
-                    </ul>
-                </div>
-
-
-                    
-                
-
-            </div>
-        </nav>
+    <header class="sticky-header">
+      <nav class="nav-container">
+        <div class="nav-content">
+          <router-link to="/" class="logo-link">
+            <img src="/online-shop.png" class="logo-image" alt="SwiftCart Logo" />
+            <span class="logo-text">SwiftCart</span>
+          </router-link>
+          
+          <button @click="toggleNavbar" class="mobile-menu-button" aria-controls="navbar-dropdown" :aria-expanded="isNavbarOpen">
+            <span class="sr-only">Open main menu</span>
+            <svg class="menu-icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15" />
+            </svg>
+          </button>
+  
+          <div :class="['navbar-menu', { 'navbar-menu-hidden': !isNavbarOpen }]" id="navbar-dropdown">
+            <ul class="nav-list">
+              <li>
+                <router-link to="" class="nav-link">Wishlist</router-link>
+              </li>
+              <li class="cart-item">
+                <router-link to="" class="cart-link">
+                  <div class="cart-badge">2</div>
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="cart-icon">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
+                  </svg>
+                </router-link>
+              </li>
+              <li class="mobile-cart-item">
+                <router-link to="" class="nav-link">Cart</router-link>
+              </li>
+              <li>
+                <router-link to="login" class="nav-link">Login</router-link>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
     </header>
-</template>
-
-<script>
-    export default {
-        name: 'Header',
-        data() {
-            return {
-                isNavbarOpen: false,
-            };
-        },
-        methods: {
-            toggleNavbar() {
-                this.isNavbarOpen = !this.isNavbarOpen;
-            },
-        },
-    };
-</script>
+  </template>
+  
+  <script>
+  export default {
+    data() {
+      return {
+        isNavbarOpen: false
+      }
+    },
+    methods: {
+      toggleNavbar() {
+        this.isNavbarOpen = !this.isNavbarOpen
+      }
+    }
+  }
+  </script>
+  
+  <style scoped>
+  .sticky-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+  
+  .nav-container {
+    background-color: #6b7280;
+  }
+  
+  .nav-content {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .logo-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+  }
+  
+  .logo-image {
+    height: 2rem;
+    margin-right: 0.75rem;
+  }
+  
+  .logo-text {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: white;
+  }
+  
+  .mobile-menu-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .menu-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    color: white;
+  }
+  
+  .navbar-menu {
+    width: 100%;
+  }
+  
+  .navbar-menu-hidden {
+    display: none;
+  }
+  
+  .nav-list {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 0;
+  }
+  
+  .nav-link {
+    display: block;
+    padding: 0.5rem 0;
+    color: white;
+    text-decoration: none;
+  }
+  
+  .cart-item {
+    display: none;
+  }
+  
+  .cart-badge {
+    position: absolute;
+    top: -0.5rem;
+    left: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    background-color: #ef4444;
+    color: white;
+    border-radius: 50%;
+    font-size: 0.75rem;
+  }
+  
+  .cart-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    color: white;
+  }
+  
+  @media (min-width: 768px) {
+    .mobile-menu-button {
+      display: none;
+    }
+  
+    .navbar-menu {
+      display: block !important;
+      width: auto;
+    }
+  
+    .nav-list {
+      flex-direction: row;
+      padding: 0;
+    }
+  
+    .nav-link {
+      padding: 0.5rem 1rem;
+    }
+  
+    .cart-item {
+      display: block;
+      position: relative;
+    }
+  
+    .mobile-cart-item {
+      display: none;
+    }
+  }
+  </style>

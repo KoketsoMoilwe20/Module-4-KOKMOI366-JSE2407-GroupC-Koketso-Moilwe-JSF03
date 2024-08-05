@@ -23,4 +23,13 @@
     const selectedCategory = ref('');
 
     const emit = defineEmits(['filter-change']);
+
+    const fetchCategories = async () => {
+        try {
+            const response = await fetch('https://fakestoreapi.com/products/categories');
+            categories.value = await response.json();
+        } catch (error) {
+            console.error('Error fetching categories:', error);
+        }
+    };
 </script>

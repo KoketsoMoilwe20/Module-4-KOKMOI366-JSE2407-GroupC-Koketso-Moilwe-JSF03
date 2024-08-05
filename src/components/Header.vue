@@ -84,7 +84,7 @@
   
   .logo-image {
     height: 2rem;
-    margin-right: 0.75rem;
+    margin-right: 0;
   }
   
   .logo-text {

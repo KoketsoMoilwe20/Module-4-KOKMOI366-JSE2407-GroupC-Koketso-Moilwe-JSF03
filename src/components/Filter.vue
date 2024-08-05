@@ -1,7 +1,10 @@
 <template>
     <div class="filter-component">
         <div class="search-bar">
-            <input />
+            <input 
+                type="text"
+                placeholder="Search products..."
+            />
         </div>
         <div class="category-filter">
             <select>
@@ -11,3 +14,7 @@
         </div>
     </div>
 </template>
+
+<script>
+
+</script>

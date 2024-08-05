@@ -19,7 +19,7 @@
             </select>
         </div>
         </div>
-        <Sort />
+        <Sort @sort-change="handleSortChange"/>
     </div>
     
 </template>
@@ -31,6 +31,7 @@
     const searchQuery = ref('');
     const categories = ref([]);
     const selectedCategory = ref('');
+    const sortOption = ref('');
 
     const emit = defineEmits(['filter-change']);
 
@@ -47,6 +48,19 @@
         emit('filter-change', {
             searchQuery: searchQuery.value,
             category: selectedCategory.value
+        });
+    };
+
+    const handleSortChange = (newSortOption) => {
+        sortOption.value = newSortOption;
+        emitFilterSortChange();
+    };
+
+    const emitFilterSortChange = () => {
+        emit('filter-sort-change', {
+            searchQuery: searchQuery.value,
+            category: selectedCategory.value,
+            sortOption: sortOption.value
         });
     };
 

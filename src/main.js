@@ -10,6 +10,11 @@ const routes = [
         path: '/',
         name: 'Home',
         component: ProductGrid
+    },
+    {
+        path: '/product/:id',
+        name: 'ProductDetails',
+        component: ProductDetails
     }
 ]
 

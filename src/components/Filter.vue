@@ -33,5 +33,12 @@
         }
     };
 
+    const emitFilters = () => {
+        emit('filter-change', {
+            searchQuery: searchQuery.value,
+            category: selectedCategory.value
+        });
+    };
+
     onMounted(fetchCategories)
 </script>

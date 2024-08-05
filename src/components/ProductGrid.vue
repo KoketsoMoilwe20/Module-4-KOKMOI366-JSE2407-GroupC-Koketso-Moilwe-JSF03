@@ -4,7 +4,9 @@
             <div v-for="product in products" :key="product.id" class="product-card">
                 <img :src="product.image" class="product-image">
                 <h3>{{ product.title }}</h3>
+                <h4>{{ product.category }}</h4>
                 <p>{{ product.price }} USD</p>
+                <button>Add To Cart</button>
             </div>
         </div>
     </div>

@@ -2,7 +2,7 @@
     <Filter @filter-change="handleFilterChange"/>
     <div class="product-grid">
         <div class="grid">
-            <div v-for="product in products" :key="product.id" class="product-card" @click="viewProduct(product.id)">
+            <div v-for="product in filteredProducts" :key="product.id" class="product-card" @click="viewProduct(product.id)">
                 <img :src="product.image" class="product-image">
                 <h3>{{ product.title }}</h3>
                 <h4>{{ product.category }}</h4>
@@ -19,6 +19,8 @@
     import Filter from './Filter.vue';
 
     const products = ref([])
+    const searchQuery = ref('');
+    const selectedCategory = ref('');
 
     const fetchProducts = async () => {
         try {
@@ -39,7 +41,7 @@
       selectedCategory.value = filters.category;
     };
 
-    const filterProducts = computed(() => {
+    const filteredProducts = computed(() => {
       return products.value.filter(product => {
         const matchesSearch = product.title.toLowerCase().includes(searchQuery.value.toLowerCase());
         const matchesCategory = selectedCategory.value === '' || product.category === selectedCategory.value;

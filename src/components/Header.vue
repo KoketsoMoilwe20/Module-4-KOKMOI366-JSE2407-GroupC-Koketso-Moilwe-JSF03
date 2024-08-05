@@ -1,0 +1,9 @@
+<template>
+    <header>
+        <nav>
+            <div>
+                <button></button>
+            </div>
+        </nav>
+    </header>
+</template>

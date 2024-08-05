@@ -1,8 +1,8 @@
 <template>
-    <Filter @filter-change="handleFilterChange"/>
+    <Filter @filter-sort-change="handleFilterSortChange"/>
     <div class="product-grid">
         <div class="grid">
-            <div v-for="product in filteredProducts" :key="product.id" class="product-card" @click="viewProduct(product.id)">
+            <div v-for="product in sortedAndFilteredProducts" :key="product.id" class="product-card" @click="viewProduct(product.id)">
                 <img :src="product.image" class="product-image">
                 <h3>{{ product.title }}</h3>
                 <h4>{{ product.category }}</h4>
@@ -21,6 +21,7 @@
     const products = ref([]);
     const searchQuery = ref('');
     const selectedCategory = ref('');
+    const sortOption = ref('');
 
     const fetchProducts = async () => {
         try {
@@ -32,13 +33,15 @@
     }
 
     const router = useRouter();
+
     const viewProduct = (id) => {
         router.push({name: 'ProductDetails', params: {id}})
     }
 
-    const handleFilterChange = (filters) => {
+    const handleFilterSortChange = (filters) => {
       searchQuery.value = filters.searchQuery;
       selectedCategory.value = filters.category;
+      sortOption.value = filters.sortOption;
     };
 
     const filteredProducts = computed(() => {
@@ -47,8 +50,18 @@
         const matchesCategory = selectedCategory.value === '' || product.category === selectedCategory.value;
 
         return matchesSearch && matchesCategory;
-      })
-    })
+      });
+    });
+
+    const sortedAndFilteredProducts = computed(() => {
+      let result = [...filteredProducts.value];
+      if (sortOption.value === 'lowToHigh') {
+        result.sort((a, b)  => a.price - b.price);
+      } else if (sortOption.value === 'highToLow') {
+        result.sort((a, b)  => b.price - a.price);
+      }
+      return result;
+    });
 
     onMounted(fetchProducts)
 

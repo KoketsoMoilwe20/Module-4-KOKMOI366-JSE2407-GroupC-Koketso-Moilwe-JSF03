@@ -45,10 +45,7 @@
     };
 
     const emitFilters = () => {
-        emit('filter-change', {
-            searchQuery: searchQuery.value,
-            category: selectedCategory.value
-        });
+        emitFilterSortChange();
     };
 
     const handleSortChange = (newSortOption) => {

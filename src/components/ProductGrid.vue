@@ -10,9 +10,12 @@
                 <p>${{ product.price }}</p>
                 <div class="ratings">
                   <span v-for="star in 5" :key="star" class="star">
+                    <!-- Display filled star if the rating is at or above the current star position -->
                     <svg v-if="star <= product.rating.rate" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="star-filled" viewBox="0 0 24 24">
                       <path d="M12 .587l3.668 7.453L24 9.539l-6 5.848 1.417 8.273L12 18.897l-7.417 4.763L6 15.387 0 9.539l8.332-1.499z"/>
                     </svg>
+
+                    <!-- Display empty star if the rating is below the current star position -->
                         <svg v-else xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="star-empty" viewBox="0 0 24 24">
                           <path d="M12 .587l3.668 7.453L24 9.539l-6 5.848 1.417 8.273L12 18.897l-7.417 4.763L6 15.387 0 9.539l8.332-1.499z" fill-opacity="0.3"/>
                         </svg>
@@ -30,6 +33,7 @@
     import { useRoute, useRouter } from 'vue-router';
     import Filter from './Filter.vue';
 
+    // Reactive state variables
     const products = ref([]);
     const loading = ref(true)
     const searchQuery = ref('');
@@ -37,6 +41,11 @@
     const sortOption = ref('');
     const appliedFilters = ref({});
 
+
+    /**
+     * Fetches products from the API and updates the state.
+     * Handles errors and updates the loading state.
+     */
     const fetchProducts = async () => {
         try {
             const response = await fetch('https://fakestoreapi.com/products')
@@ -51,6 +60,11 @@
     const router = useRouter();
     const route = useRoute();
 
+    /**
+     * Navigates to the product detail view with the specified product ID.
+     * Updates the URL query parameters to include current filters and sort options.
+     */
+
     const viewProduct = (id) => {
         router.push({name: 'ProductDetails',
          params: {id},
@@ -61,6 +75,11 @@
          }
         });
     };
+
+     /**
+     * Handles changes in filter and sort options.
+     * Updates the reactive state and the URL query parameters.
+     */
 
     const handleFilterSortChange = (filters) => {
       searchQuery.value = filters.searchQuery;
@@ -77,6 +96,11 @@
       });
     };
 
+    /**
+     * Filters products based on the current search query and selected category.
+     * 
+     * @returns {Array} - The filtered list of products.
+     */
     const filteredProducts = computed(() => {
       return products.value.filter(product => {
         const matchesSearch = product.title.toLowerCase().includes(searchQuery.value.toLowerCase());
@@ -86,6 +110,12 @@
       });
     });
 
+
+    /**
+     * Sorts the filtered products based on the selected sort option.
+     * 
+     * @returns {Array} - The sorted list of filtered products.
+     */
     const sortedAndFilteredProducts = computed(() => {
       let result = [...filteredProducts.value];
       if (sortOption.value === 'lowToHigh') {

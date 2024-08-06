@@ -19,20 +19,28 @@
             </select>
         </div>
         </div>
-        <Sort @sort-change="handleSortChange" :key="reset"/>
+        <Sort @sort-change="handleSortChange" :appliedFilters="appliedFilters.sortOption"
+        :key="reset"/>
         <button @click="resetFilters" class="reset-button">Reset Filters</button>
     </div>
     
 </template>
 
 <script setup>
-    import {ref, onMounted} from 'vue';
+    import {ref, onMounted, watch} from 'vue';
     import Sort from './Sort.vue';
 
-    const searchQuery = ref('');
+    const props = defineProps({
+        appliedFilters: {
+            type: Object,
+            default: () => ({})
+        }
+    });
+
+    const searchQuery = ref(props.appliedFilters.searchQuery || '');
     const categories = ref([]);
-    const selectedCategory = ref('');
-    const sortOption = ref('');
+    const selectedCategory = ref(props.appliedFilters.category || '');
+    const sortOption = ref(props.appliedFilters.sortOption || '');
     const reset = ref(0);
 
     const emit = defineEmits(['filter-change']);
@@ -71,5 +79,11 @@
         emitFilterSortChange();
     };
 
-    onMounted(fetchCategories)
+    onMounted(fetchCategories);
+
+    watch(props.appliedFilters, (newFilters) => {
+        searchQuery.value = newFilters.searchQuery || '';
+        selectedCategory.value = newFilters.category || '';
+        sortOption.value = newFilters.sortOption || '';
+    }, {immediate: true});
 </script>

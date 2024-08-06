@@ -37,8 +37,10 @@
 
     const router = useRouter();
     const goBack = () => {
-        router.push({name: 'Home'});
-    }
+        router.push({name: 'Home',
+            query: route.query //preserving the current query parameters
+        });
+    };
 
     onMounted(fetchProduct)
 </script>

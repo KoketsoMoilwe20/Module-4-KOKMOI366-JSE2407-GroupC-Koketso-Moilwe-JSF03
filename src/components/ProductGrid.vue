@@ -8,6 +8,17 @@
                 <h3>{{ product.title }}</h3>
                 <h4>{{ product.category }}</h4>
                 <p>${{ product.price }}</p>
+                <div class="ratings">
+                  <span v-for="star in 5" :key="star" class="star">
+                    <svg v-if="star <= product.rating.rate" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="star-filled" viewBox="0 0 24 24">
+                      <path d="M12 .587l3.668 7.453L24 9.539l-6 5.848 1.417 8.273L12 18.897l-7.417 4.763L6 15.387 0 9.539l8.332-1.499z"/>
+                    </svg>
+                        <svg v-else xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="star-empty" viewBox="0 0 24 24">
+                          <path d="M12 .587l3.668 7.453L24 9.539l-6 5.848 1.417 8.273L12 18.897l-7.417 4.763L6 15.387 0 9.539l8.332-1.499z" fill-opacity="0.3"/>
+                        </svg>
+                  </span>
+                  <span>({{ product.rating.count }})</span>
+                </div>
                 <button>Add To Cart</button>
             </div>
         </div>
@@ -109,6 +120,7 @@
     padding: 1rem;
     display: flex;
     justify-content: center;
+    background-color: #F3DBCE;
     }
 
 .grid {
@@ -120,8 +132,8 @@
 }
 
 .product-card {
-  background-color: white;
-  border: 1px solid #e5e7eb; 
+  background-color: #F3F3F3;
+  border: 1px solid #E0E0E0; 
   border-radius: 1rem; 
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); 
   overflow: hidden;
@@ -142,7 +154,7 @@
   width: 65%;
   height: 100%;
   object-fit: contain;
-  border-bottom: 1px solid #e5e7eb; 
+  border-bottom: 1px solid #E5989B; 
 }
 
 .product-card h3 {
@@ -154,17 +166,18 @@
 .product-card h4 {
   margin: 0.5rem 0;
   font-size: 1rem;
-  color: #6b7280; 
+  color: #7A7A7A; 
 }
 
 .product-card p {
   margin: 0.5rem 0;
   font-size: 1.125rem;
   font-weight: bold;
+  color: #000;
 }
 
 .product-card button {
-  background-color: #4f46e5; 
+  background-color: #4caf50; 
   color: white;
   border: none;
   border-radius: 0.375rem; 
@@ -175,7 +188,34 @@
 }
 
 .product-card button:hover {
-  background-color: #4338ca; 
+  background-color: #45a049; 
+}
+
+.ratings {
+    display: flex;
+    
+    align-items: center;
+    margin: 0.5rem 0;
+}
+
+.star {
+    width: 1rem;
+    height: 1rem;
+    margin-right: 0.1rem;
+}
+
+.star-filled {
+    color: #ffc107;
+}
+
+.star-empty {
+    color: #e0e0e0;
+}
+
+.rating-number {
+    font-size: 0.875rem;
+    color: #7a7a7a;
+    margin-left: 0.5rem;
 }
 
 </style>

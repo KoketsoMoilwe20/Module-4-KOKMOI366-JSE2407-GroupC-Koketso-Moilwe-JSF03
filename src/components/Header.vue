@@ -63,7 +63,7 @@
   }
   
   .nav-container {
-    background-color: #6b7280;
+    background-color: #6D6875;
   }
   
   .nav-content {
@@ -90,7 +90,7 @@
   .logo-text {
     font-size: 1.5rem;
     font-weight: 600;
-    color: white;
+    color: #F3DBCE;
   }
   
   .mobile-menu-button {
@@ -106,7 +106,7 @@
   .menu-icon {
     width: 1.25rem;
     height: 1.25rem;
-    color: white;
+    color: #F3DBCE;
   }
   
   .navbar-menu {
@@ -143,7 +143,7 @@
     justify-content: center;
     width: 1.5rem;
     height: 1.5rem;
-    background-color: #ef4444;
+    background-color: #EF4444;
     color: white;
     border-radius: 50%;
     font-size: 0.75rem;

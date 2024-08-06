@@ -135,7 +135,7 @@
     .filter-component {
         display: flex;
         flex-wrap: wrap;
-        justify-content: space-between;
+        justify-content: center;
         gap: 15px;
     }
 
@@ -176,14 +176,14 @@
         font-size: 14px;
         color: #6d6875;
         display: block;
-        margin: 10px auto 0;
+        margin: 20px auto 0;
 }
 
 .reset-button:hover {
   background-color: #E5989B;
 }
 
-/* Responsive for larger screens */
+/* Responsive for smaller screens */
 @media (min-width: 768px) {
         .filter-sort-container {
             flex-direction: row;
@@ -193,7 +193,7 @@
 
         .filter-component {
             flex: 1;
-            justify-content: flex-start;
+            justify-content: center;
         }
 
         .reset-button {

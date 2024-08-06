@@ -1,7 +1,8 @@
 <template>
     <Filter @filter-sort-change="handleFilterSortChange"/>
     <div class="product-grid">
-        <div class="grid">
+      <div v-if="loading">Loading...</div>
+        <div v-else class="grid">
             <div v-for="product in sortedAndFilteredProducts" :key="product.id" class="product-card" @click="viewProduct(product.id)">
                 <img :src="product.image" class="product-image">
                 <h3>{{ product.title }}</h3>
@@ -19,6 +20,7 @@
     import Filter from './Filter.vue';
 
     const products = ref([]);
+    const loading = ref(true)
     const searchQuery = ref('');
     const selectedCategory = ref('');
     const sortOption = ref('');
@@ -27,8 +29,10 @@
         try {
             const response = await fetch('https://fakestoreapi.com/products')
             products.value = await response.json()
+            loading.value = false
         } catch (error) {
             console.error('Error fetching products:', error)
+            loading.value = false
         }
     }
 

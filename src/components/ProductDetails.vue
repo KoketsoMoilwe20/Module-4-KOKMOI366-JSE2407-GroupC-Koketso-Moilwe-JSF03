@@ -1,22 +1,28 @@
 <template>
-    <div v-if="loading" class="product-details">
+    <div v-if="loading" class="product-detail">
         Loading...
     </div>
     <div v-else-if="product" class="product-details">
-        <img :src="product.image" class="product-image">
-        <h2>{{ product.title }}</h2>
-        <p class="price">${{ product.price }}</p>
-        <div class="ratings">
-            <span v-for="star in 5" :key="star" class="star">
+        <div class="product-image-container">
+            <img :src="product.image" class="product-image">
+        </div>
+        
+        <div class="product-info">
+            <h2>{{ product.title }}</h2>
+            <p class="price">${{ product.price }}</p>
+            <div class="ratings">
+                <span v-for="star in 5" :key="star" class="star">
                 <svg v-if="star <= product.rating.rate" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="star-filled" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.453L24 9.539l-6 5.848 1.417 8.273L12 18.897l-7.417 4.763L6 15.387 0 9.539l8.332-1.499z"/></svg>
                 <svg v-else xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="star-empty" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.453L24 9.539l-6 5.848 1.417 8.273L12 18.897l-7.417 4.763L6 15.387 0 9.539l8.332-1.499z" fill-opacity="0.3"/></svg>
-            </span>
-            <span class="rating-number">({{ product.rating.count }})</span>
+                </span>
+                <span class="rating-number">({{ product.rating.count }})</span>
         </div>
         <p class="description">{{ product.description }}</p>
         <p class="category">Category: {{ product.category }}</p>
-        <button @click="goBack">Back To Products</button>
+        <button @click="goBack" class="back-button">Back To Products</button>
     </div>
+        </div>
+        
     <div v-else class="prodcuct-details">
         Product not found
     </div>
@@ -54,60 +60,158 @@
 
 <style scoped>
     .product-details {
-        padding: 20px;
-        max-width: 600px;
-        margin: 0 auto;
+        display: flex;
+    padding: 20px;
+    max-width: 1000px;
+    max-height: 80vh;
+    margin: 20px auto;
+    background-color: #F3DBCE;
+    border: 1px solid #B5838D;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
+
+    .product-image-container {
+        flex: 0 0 40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-right: 20px;
+    }
+
 
     .product-image {
         max-width: 100%;
-        height: 400px;
-        object-fit: contain;
+    max-height: 60vh;
+    object-fit: contain;
+    border-radius: 8px;
+    background-color: #ffffff;
+    border: 1px solid #E5989B;
+
+    }
+
+    .product-info {
+        flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    max-height: 60vh;
+    overflow-y: auto;
+    padding-left: 20px;
+}
+
+    h2 {
+        font-size: 1.5rem;
+    color: #6D6875;
+    margin-top: 0;
+    margin-bottom: 10px;
     }
 
     .price {
         font-weight: bold;
-        font-size: 1.2em;
+    font-size: 1.2em;
+    color: #E5989B;
+    margin: 5px 0px;
     }
 
     .description {
-        margin-top: 20px;
+        font-size: 0.9rem;
+    color: #4b5563;
+    margin: 10px 0;
+    flex-grow: 1;
+    overflow-y: auto;
     }
 
     .category {
         font-style: italic;
-        color: #666;
+        color: #B5838D;
+        margin: 5px 0;
     }
 
     .ratings {
     display: flex;
     align-items: center;
-    margin: 0.5rem 0;
+    margin: 5px 0;
 }
 
 .star {
-    width: 1.5rem;
-    height: 1.5rem;
-    margin-right: 0.1rem;
+    width: 1.2rem;
+    height: 1.2rem;
+    margin-right: 0.2rem;
 }
 
 .star-filled {
-    color: #ffc107;
+    color: #ffb4a2;
 }
 
 .star-empty {
-    color: #e0e0e0;
+    color: #e5989b;
 }
 
 .rating-number {
-    font-size: 1rem;
+    font-size: 0.9rem;
     color: #6b7280;
     margin-left: 0.5rem;
 }
 
-.product-details .description {
-    font-size: 1rem;
-    margin: 1rem 0;
-    color: #4b5563;
+.back-button {
+    background-color: #FFB4A2;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    align-self: flex-start;
+    margin-top: 10px;
 }
+
+.back-button:hover {
+    background-color: #e5989b;
+}
+
+@media (max-width: 768px) {
+    .product-details {
+        flex-direction: column;
+        max-height: none;
+        height: auto;
+        margin: 10px;
+        padding: 15px;
+    }
+
+    .product-image-container {
+        flex: 0 0 auto;
+        padding-right: 0;
+        padding-bottom: 15px;
+    }
+
+    .product-image {
+        max-height: 40vh;
+    }
+
+    .product-info {
+        padding-left: 0;
+        max-height: none;
+    }
+
+    h2 {
+        font-size: 1.3rem;
+    }
+
+    .price, .description, .category, .rating-number {
+        font-size: 0.85rem;
+    }
+
+    .star {
+        width: 1rem;
+        height: 1rem;
+    }
+
+    .back-button {
+        width: 100%;
+        padding: 10px;
+    }
+}
+
 </style>

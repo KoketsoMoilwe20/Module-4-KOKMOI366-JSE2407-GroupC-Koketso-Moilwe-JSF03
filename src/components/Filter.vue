@@ -87,3 +87,76 @@
         sortOption.value = newFilters.sortOption || '';
     }, {immediate: true});
 </script>
+
+<style scoped>
+    .filter-sort-container {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        background-color: #F3DBCE;
+        padding: 15px;
+    }
+
+    .filter-component {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 15px;
+    }
+
+    .search-bar, .category-filter {
+        flex-grow: 1;
+        min-width: 200px;
+    }
+
+    .search-bar input, .category-filter select {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #B5838D;
+        border-radius: 4px;
+        font-size: 14px;
+        background-color: #FFCDB2;
+    }
+
+.search-bar input {
+    max-width: 300px;
+}
+
+.category-filter select {
+    max-width: 200px;
+}
+
+.reset-button {
+    padding: 8px 12px;
+        background-color: #FFB4A2;
+        border: 1px solid #E5989B;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 14px;
+        color: #6d6875;
+        display: block;
+        margin: 10px auto 0;
+}
+
+.reset-button:hover {
+  background-color: #E5989B;
+}
+
+@media (min-width: 768px) {
+        .filter-sort-container {
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .filter-component {
+            flex: 1;
+            justify-content: flex-start;
+        }
+
+        .reset-button {
+            margin: 0;
+            flex-shrink: 0;
+        }
+    }
+</style>

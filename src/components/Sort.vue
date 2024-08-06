@@ -32,5 +32,32 @@
 </script>
 
 <style scoped>
-    
+    .sort-component {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 10px 0;
+    }
+
+    .sort-component select {
+        padding: 8px;
+        border: 1px solid #B5838D;
+        border-radius: 4px;
+        font-size: 16px;
+        background-color: #FFFFFF; /* Background color */
+        color: #6D6875; /* Text color */
+        width: 200px;
+    }
+
+    @media (max-width: 768px) {
+        .sort-component {
+            margin-top: 20px;
+            justify-content: flex-start;
+        }
+
+        .sort-component select {
+            width: 100%;
+            max-width: 200px;
+        }
+    }
 </style>

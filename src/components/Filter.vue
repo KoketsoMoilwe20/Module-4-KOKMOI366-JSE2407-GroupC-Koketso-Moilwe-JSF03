@@ -144,6 +144,12 @@
         min-width: 200px;
     }
 
+    .search-bar {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
     .search-bar input, .category-filter select {
         width: 100%;
         padding: 8px;

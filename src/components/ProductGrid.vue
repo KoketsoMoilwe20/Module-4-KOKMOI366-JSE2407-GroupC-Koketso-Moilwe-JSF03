@@ -1,5 +1,5 @@
 <template>
-    <Filter @filter-sort-change="handleFilterSortChange"/>
+    <Filter @filter-sort-change="handleFilterSortChange" :appliedFilters="appliedFilters"/>
     <div class="product-grid">
       <div v-if="loading">Loading...</div>
         <div v-else class="grid">
@@ -16,7 +16,7 @@
 
 <script setup>
     import {ref, onMounted, computed} from 'vue';
-    import { useRouter } from 'vue-router';
+    import { useRoute, useRouter } from 'vue-router';
     import Filter from './Filter.vue';
 
     const products = ref([]);
@@ -24,6 +24,7 @@
     const searchQuery = ref('');
     const selectedCategory = ref('');
     const sortOption = ref('');
+    const appliedFilters = ref({});
 
     const fetchProducts = async () => {
         try {
@@ -37,15 +38,32 @@
     }
 
     const router = useRouter();
+    const route = useRoute();
 
     const viewProduct = (id) => {
-        router.push({name: 'ProductDetails', params: {id}})
-    }
+        router.push({name: 'ProductDetails',
+         params: {id},
+         query: {
+          searchQuery: searchQuery.value,
+          category: selectedCategory.value,
+          sortOption: sortOption.value
+         }
+        });
+    };
 
     const handleFilterSortChange = (filters) => {
       searchQuery.value = filters.searchQuery;
       selectedCategory.value = filters.category;
       sortOption.value = filters.sortOption;
+
+      //Updating URL with the new filters and sort option
+      router.replace({
+        query: {
+          searchQuery: searchQuery.value,
+          category: selectedCategory.value,
+          sortOption: sortOption.value
+        }
+      });
     };
 
     const filteredProducts = computed(() => {
@@ -67,7 +85,21 @@
       return result;
     });
 
-    onMounted(fetchProducts)
+    onMounted(() => {
+      fetchProducts();
+
+      //Restoring filters from URL query parameters
+      const { searchQuery: q, category, sortOption: sort } = route.query;
+      searchQuery.value = q || '';
+      selectedCategory.value = category || '';
+      sortOption.value = sort || '';
+
+      appliedFilters.value = {
+          searchQuery: q || '',
+          category: category || '',
+          sortOption: sort || ''
+      };
+    });
 
 </script>
 

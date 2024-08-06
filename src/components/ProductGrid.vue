@@ -6,7 +6,7 @@
             <div v-for="product in sortedAndFilteredProducts" :key="product.id" class="product-card" @click="viewProduct(product.id)">
                 <img :src="product.image" class="product-image">
                 <h3>{{ product.title }}</h3>
-                <h4>{{ product.category }}</h4>
+                <h4 class="product-category">{{ product.category }}</h4>
                 <p>${{ product.price }}</p>
                 <div class="ratings">
                   <span v-for="star in 5" :key="star" class="star">
@@ -167,6 +167,23 @@
   margin: 0.5rem 0;
   font-size: 1rem;
   color: #7A7A7A; 
+}
+
+.product-category {
+  font-size: 1rem;
+  color: #6D6875;
+  background: linear-gradient(to right, #E5989B, #6D6875);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.25rem 0.5rem;
+  border: 2px solid #E5989B;
+  border-radius: 1rem;
+  display: inline-block;
+  margin: 0.5rem 0;
 }
 
 .product-card p {

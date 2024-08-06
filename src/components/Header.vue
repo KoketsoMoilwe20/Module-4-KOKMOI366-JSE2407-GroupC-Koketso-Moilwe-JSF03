@@ -1,12 +1,19 @@
 <template>
+
+  <!-- Sticky header that stays at the top of the viewport -->
     <header class="sticky-header">
+
+       <!-- Navigation container -->
         <nav class="nav-container">
             <div class="nav-content">
+
+               <!-- Logo link with image and text -->
                 <a href="/" class="logo-link">
                     <img src="/online-shop.png" class="logo-image" alt="SwiftCart Logo" />
                     <span class="logo-text">ZenCart</span>
                 </a>
                 
+                <!-- Button to toggle the mobile menu -->
                 <button @click="toggleNavbar" class="mobile-menu-button" aria-controls="navbar-dropdown" :aria-expanded="isNavbarOpen">
                     <span class="sr-only">Toggle navigation</span>
                     <svg class="menu-icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
@@ -14,6 +21,7 @@
                     </svg>
                 </button>
 
+                <!-- Navigation menu, visibility controlled by isNavbarOpen -->
                 <div :class="['navbar-menu', { 'navbar-menu-hidden': !isNavbarOpen }]" id="navbar-dropdown">
                     <ul class="nav-list">
                         <li class="nav-item">
@@ -41,10 +49,13 @@
 export default {
     data() {
         return {
-            isNavbarOpen: false
+            isNavbarOpen: false //State to control visibility of the mobile menu
         }
     },
     methods: {
+       /**
+         * Toggles the visibility of the mobile navigation menu.
+         */
         toggleNavbar() {
             this.isNavbarOpen = !this.isNavbarOpen
         }

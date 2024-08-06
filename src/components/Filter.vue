@@ -19,7 +19,8 @@
             </select>
         </div>
         </div>
-        <Sort @sort-change="handleSortChange"/>
+        <Sort @sort-change="handleSortChange" :key="reset"/>
+        <button @click="resetFilters" class="reset-button">Reset Filters</button>
     </div>
     
 </template>
@@ -32,6 +33,7 @@
     const categories = ref([]);
     const selectedCategory = ref('');
     const sortOption = ref('');
+    const reset = ref(0);
 
     const emit = defineEmits(['filter-change']);
 
@@ -59,6 +61,14 @@
             category: selectedCategory.value,
             sortOption: sortOption.value
         });
+    };
+
+    const resetFilters = () => {
+        searchQuery.value = '';
+        selectedCategory.value = '';
+        sortOption.value = '';
+        reset.value += 1; //this forces the sort component to re-render
+        emitFilterSortChange();
     };
 
     onMounted(fetchCategories)

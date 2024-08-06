@@ -1,5 +1,7 @@
 <template>
+    <!-- Container for the sort component -->
     <div class="sort-component">
+        <!-- Dropdown for selecting sort option -->
         <select v-model="sortOption" @change="emitSortChange">
             <option value="">Sort by</option>
             <option value="lowToHigh">Price: Low to High</option>
@@ -11,6 +13,7 @@
 <script setup>
     import { ref, watch } from 'vue';
 
+    // Define component props
     const props = defineProps({
         initialSort: {
             type: String,
@@ -18,14 +21,23 @@
         }
     });
 
+    // Reactive state variable for the selected sort option
     const sortOption = ref(props.initialSort);
 
+    // Define the emits for the component
     const emit = defineEmits(['sort-change']);
 
+    /**
+     * Emits the current sort option to the parent component.
+     */
     const emitSortChange = () => {
         emit('sort-change', sortOption.value)
     };
 
+    /**
+     * Watcher to emit sort change whenever the sortOption changes.
+     * The immediate flag ensures that the initial sort option is emitted as well.
+     */
     watch(sortOption, () => {
         emitSortChange();
     }, {immediate: true})
@@ -49,6 +61,7 @@
         width: 200px;
     }
 
+    /* Responsive styles for smaller screens */
     @media (max-width: 768px) {
         .sort-component {
             margin-top: 20px;

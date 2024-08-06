@@ -177,6 +177,7 @@
   background-color: #E5989B;
 }
 
+/* Responsive for larger screens */
 @media (min-width: 768px) {
         .filter-sort-container {
             flex-direction: row;

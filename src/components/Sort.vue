@@ -9,14 +9,20 @@
 </template>
 
 <script setup>
-    import { ref } from 'vue';
+    import { ref, watch } from 'vue';
 
+    const props = defineProps(['resetTrigger']);
     const sortOption = ref('');
     const emit = defineEmits(['sort-change']);
 
     const emitSort = () => {
         emit('sort-change', sortOption.value)
     };
+
+    watch(() => props.resetTrigger, () => {
+        sortOption.value = '';
+        emitSort();
+    })
 </script>
 
 <style scoped>
